@@ -1,3 +1,3 @@
 # rock-paper-scissors
-## Descrition
+## Description
 This project is about a rock paper scissors game using javascript
