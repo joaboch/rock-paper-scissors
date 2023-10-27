@@ -33,15 +33,26 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
+//This function will play a 5 round game using the playRound function and returns a winner
+function game() {
+    let score = 0
+      , result = "";
+  //Use a loop to call the function and determinte the parameters
+  for(let i = 0; i < 5; i++) {
+    let playerSelection = prompt("What's your choice?")
+      , computerSelection = getComputerChoice();
+    result = playRound(playerSelection, computerSelection);
+    console.log(result);
+    if(result.slice(0, 8) == "You Win!") {
+      score++;
+    }
+  }
+  if(score >= 3) {
+    console.log("Congratulations, You Win the Game!");
+  } else {
+    console.log("Too bad, You Lose")
+  }
+}
 
+game();
 
-
-
-
-
-
-
-
-console.log(playRound(playerSelection, computerSelection));
