@@ -33,42 +33,44 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //This function will play a 5 round game using the playRound function and returns a winner
-/*function game() {
-    let score = 0
-      , result = "";
-  //Use a loop to call the function and determinte the parameters
-  for(let i = 0; i < 5; i++) {
-    let computerSelection = getComputerChoice();
-    result = playRound(playerSelection, computerSelection);
-    console.log(result);
-    if(result.slice(0, 8) == "You Win!") {
+let score = 0;
+function game(value) {
+  const winner = document.querySelector('#winner');
+  if(value.slice(0, 8) == "You Win!") {
       score++;
-    }
   }
-  if(score >= 3) {
-    console.log("Congratulations, You Win the Game!");
-  } else {
-    console.log("Too bad, You Lose")
+  if(score == 5) {
+    score = 0;
+    winner.textContent = "Congratulations, You Win the Game!";
   }
-}*/
+  scoreTrack.textContent = score;
+}
 
 
+const result = document.querySelector('#results');
+const scoreTrack = document.querySelector('#score');
 
 const rock = document.querySelector('#rock').addEventListener('click', () => {
   const playerSelection = "rock";
   const computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
+  const value = playRound(playerSelection, computerSelection);
+  result.textContent = value;
+  game(value);
   
 })
 
 const paper = document.querySelector('#paper').addEventListener('click', () => {
   playerSelection = "paper";
   const computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
+  const value = playRound(playerSelection, computerSelection);
+  result.textContent = value;
+  game(value);
 })
 
 const scissors = document.querySelector('#scissors').addEventListener('click', () => {
   playerSelection = "scissors";
   const computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
+  const value = playRound(playerSelection, computerSelection);
+  result.textContent = value;
+  game(value);
 })
