@@ -33,28 +33,40 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //This function will play a 5 round game using the playRound function and returns a winner
-let score = 0;
+let playerScore = 0
+  , computerScore = 0;
+
 function game(value) {
   const winner = document.querySelector('#winner');
   if(value.slice(0, 8) == "You Win!") {
-      score++;
+      playerScore++;
+  } else if(value.slice(0, 9) == "You Lose!") {
+    computerScore++;
   }
-  if(score == 5) {
-    score = 0;
+  if(playerScore == 5) {
+    playerScore = 0;
+    computerScore = 0;
     winner.textContent = "Congratulations, You Win the Game!";
+  } else if (computerScore == 5){
+    playerScore = 0;
+    computerScore = 0;
+    winner.textContent = "The Computer Wins the Game!";
   }
-  scoreTrack.textContent = score;
+  scoreTrack.textContent = playerScore;
+  computerTrack.textContent = computerScore;
 }
 
 
 const result = document.querySelector('#results');
-const scoreTrack = document.querySelector('#score');
+const scoreTrack = document.querySelector('#score1');
+const computerTrack = document.querySelector('#score2');
 
 const rock = document.querySelector('#rock').addEventListener('click', () => {
   const playerSelection = "rock";
   const computerSelection = getComputerChoice();
   const value = playRound(playerSelection, computerSelection);
   result.textContent = value;
+  winner.textContent = "";
   game(value);
   
 })
@@ -64,6 +76,7 @@ const paper = document.querySelector('#paper').addEventListener('click', () => {
   const computerSelection = getComputerChoice();
   const value = playRound(playerSelection, computerSelection);
   result.textContent = value;
+  winner.textContent = "";
   game(value);
 })
 
@@ -72,5 +85,6 @@ const scissors = document.querySelector('#scissors').addEventListener('click', (
   const computerSelection = getComputerChoice();
   const value = playRound(playerSelection, computerSelection);
   result.textContent = value;
+  winner.textContent = "";
   game(value);
 })
